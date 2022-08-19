@@ -26,15 +26,11 @@ jobs:
       - name: Gradle wrapper validation
         uses: gradle/wrapper-validation-action@v1
 
-      - name: ./gradlew assemble
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assemble
+      - uses: gradle/gradle-build-action@v2
 
-      - name: ./gradlew check
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: check
+      - run: ./gradlew assemble
+
+      - run: ./gradlew check
 
       - name: Upload test results
         if: ${{ always() }}
